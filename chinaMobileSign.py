@@ -53,10 +53,10 @@ class chinaMobileSign(object):
 
 
 if __name__ == '__main__':
-    username = raw_input('username')
-    userpswd = raw_input('userpwsd')
+    # username = raw_input('username')
+    # userpswd = raw_input('userpwsd')
     try:
-        foo = chinaMobileSign(username, userpswd)
+        foo = chinaMobileSign()
         result = foo.login()
         if result[1] is True:
             checkResult = foo.checkIn(result[0])

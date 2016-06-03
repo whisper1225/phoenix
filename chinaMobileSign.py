@@ -17,9 +17,9 @@ class chinaMobileSign(object):
         # 'Host': 'http://api.ahmobile.cn'
     }
 
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+    # def __init__(self, username, password):
+    #     self.username = username
+    #     self.password = password
 
     def login(self):
         sess = requests.Session()
@@ -38,7 +38,7 @@ class chinaMobileSign(object):
         }
         rep = sess.post('http://api.ahmobile.cn:8081/eip?eip_serv_id=app.ssoLogin', form_data, headers=self.headers)
         resultsJson = json.loads(rep.text)
-        status = True if resultsJson['result'] else False
+        status = True if resultsJson['result'] == 'o' else False
         return [sess, status]
 
     def checkIn(self, sess):
@@ -48,8 +48,11 @@ class chinaMobileSign(object):
             'ytnb': 'true'
         }
         rep = sess.post(checkInUrl, form_data, headers=self.headers)
-        resultsJson = json.loads(rep.text)
-        return result
+        # 为什么什么都不打印,是本身就什么签到成功就什么都不返回吗,明天测试 如果是签到
+        # 程序没有问题,那么每天第一次签到一定有大量的返回信息,包括签到天数,返回的流量等.
+        # 重点需验证签到之后,再次签到是否有返回信息,同时需要注意Python异常体系
+        print 'checkIn retun 1' + rep.text
+        return rep.text
 
 
 if __name__ == '__main__':
@@ -59,8 +62,8 @@ if __name__ == '__main__':
         foo = chinaMobileSign()
         result = foo.login()
         if result[1] is True:
+            print '登陆成功'
             checkResult = foo.checkIn(result[0])
-            print checkResult
     except:
         print '登陆失败'
         print sys.exc_info()

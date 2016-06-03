@@ -63,6 +63,9 @@ if __name__ == '__main__':
         result = foo.login()
         if result[1] is True:
             print '登陆成功'
+            # 这个地方需要改进,并不是登陆成功就可以执行签到.还需要对签到有礼页面进行分析,如果是已经签到,从这个里面分析出标志,记入日志.反之就执行签到程序.
+            # 2. 需要解析出 成功签到的日志信息
+            # 3. 存入日志
             checkResult = foo.checkIn(result[0])
     except:
         print '登陆失败'

@@ -38,7 +38,19 @@ class chinaMobileSign(object):
         }
         rep = sess.post('http://api.ahmobile.cn:8081/eip?eip_serv_id=app.ssoLogin', form_data, headers=self.headers)
         resultsJson = json.loads(rep.text)
-        return resultsJson['result']
+        status = True if resultsJson['result'] else False
+        return [sess, status]
+
+    def checkIn(self, sess):
+        checkInUrl = 'http://api.ahmobile.cn:8081/eip?eip_serv_id=app.checkInIm'
+        form_data = {
+            'token': 'b07ece7306ead09f0ef5cd4a74a0d456',
+            'ytnb': 'true'
+        }
+        rep = sess.post(checkInUrl, form_data, headers=self.headers)
+        resultsJson = json.loads(rep.text)
+        return result
+
 
 if __name__ == '__main__':
     username = raw_input('username')
@@ -46,7 +58,9 @@ if __name__ == '__main__':
     try:
         foo = chinaMobileSign(username, userpswd)
         result = foo.login()
-        print result
+        if result[1] is True:
+            checkResult = foo.checkIn(result[0])
+            print checkResult
     except:
         print '登陆失败'
         print sys.exc_info()

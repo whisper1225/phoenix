@@ -51,7 +51,7 @@ class chinaMobileSign(object):
         # 为什么什么都不打印,是本身就什么签到成功就什么都不返回吗,明天测试 如果是签到
         # 程序没有问题,那么每天第一次签到一定有大量的返回信息,包括签到天数,返回的流量等.
         # 重点需验证签到之后,再次签到是否有返回信息,同时需要注意Python异常体系
-        print 'checkIn retun 1' + rep.text
+        print 'checkIn retun' + rep.text
         return rep.text
 
 

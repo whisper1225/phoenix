@@ -11,8 +11,10 @@ sys.setdefaultencoding('utf-8')
 
 class chinaMobileSign(object):
     headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
+        # 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
         'Origin': 'http://api.ahmobile.cn',
+        "Connection": "Keep-Alive",
+        "User-Agent": "okhttp/3. 2.0",
         'Referer': 'http://api.ahmobile.cn:8081/eip?eip_serv_id=app.ssoLogin'
         # 'Host': 'http://api.ahmobile.cn'
     }

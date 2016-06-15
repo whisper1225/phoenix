@@ -79,6 +79,7 @@ if __name__ == '__main__':
         foo.writelog('des')
         sess = foo.login()
         if sess[1] is True:
+            az
             foo.daily(sess[0])
     except:
         print '登录失败...'
